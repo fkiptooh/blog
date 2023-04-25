@@ -6,7 +6,7 @@ import FavouriteClient from "./FavouriteClient";
 const PostPage = async()=>{
     
     const posts = await getFavoutitePosts();
-    const user = await getCurrentUser();
+    const currentUser = await getCurrentUser();
 
     if (posts.length === 0) {
         return (
@@ -21,7 +21,7 @@ const PostPage = async()=>{
     return (
         <FavouriteClient
             posts={posts}
-            currentUser={user}
+            currentUser={currentUser}
         />
     )
 }
