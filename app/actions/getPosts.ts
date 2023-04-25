@@ -1,17 +1,24 @@
 import prisma from "@/app/libs/prismadb";
 
-export interface IPostParams {
+export interface IPostsParams {
   userId?: string;
   startDate?: string;
   endDate?: string;
   locationValue?: string;
   category?: string;
-  searchQuery?: string; // Add searchQuery parameter
 }
 
-export default async function getPosts(params: IPostParams) {
+export default async function getPosts(
+  params: IPostsParams
+) {
   try {
-    const { userId, category, startDate, endDate, locationValue, searchQuery } = params;
+    const {
+      userId,
+      locationValue,
+      startDate,
+      endDate,
+      category,
+    } = params;
 
     let query: any = {};
 
@@ -27,43 +34,38 @@ export default async function getPosts(params: IPostParams) {
       query.locationValue = locationValue;
     }
 
-    // Add search filter
-    if (searchQuery) {
-      query.OR = [
-        { title: { contains: searchQuery, mode: "insensitive" } },
-        { description: { contains: searchQuery, mode: "insensitive" } },
-      ];
-    }
-
     // Date filter
-//     if (startDate && endDate) {
-//       query.NOT = {
-//  posts: {      some: {
-//           AND: [
-//             {
-//               endTime: { gte: startDate },
-//               startDate: { lte: startDate },
-//             },
-//             {
-//               startDate: { gte: endDate },
-//               endTime: { lte: endDate },
-//             },
-//           ],
-//         },}
-//       };
-//     }
+    // if (startDate && endDate) {
+    //   query.NOT = {
+    //     reservations: {
+    //       some: {
+    //         OR: [
+    //           {
+    //             endDate: { gte: startDate },
+    //             startDate: { lte: startDate }
+    //           },
+    //           {
+    //             startDate: { lte: endDate },
+    //             endDate: { gte: endDate }
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   }
+    // }
 
     const posts = await prisma.post.findMany({
       where: query,
       orderBy: {
-        createdAt: "desc",
-      },
+        createdAt: 'desc'
+      }
     });
 
     const safePosts = posts.map((post) => ({
       ...post,
       createdAt: post.createdAt.toISOString(),
     }));
+
     return safePosts;
   } catch (error: any) {
     throw new Error(error);
