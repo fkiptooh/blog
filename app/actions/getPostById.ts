@@ -1,0 +1,38 @@
+import prisma from "@/app/libs/prismadb";
+
+interface IParams {
+    postId?: string
+}
+
+export default async function getPostsById(
+    params: IParams
+){
+    try {
+        const { postId } = params
+
+        const post = await prisma.post.findUnique({
+            where: {
+                id: postId
+            },
+            include: {
+                user: true
+            }
+        });
+        if (!post) {
+            return null;
+        }
+
+        return {
+            ...post,
+            createAt: post.createdAt.toISOString(),
+            user: {
+                ...post.user,
+                createdAt: post.user.createdAt.toISOString(),
+                updatedAt: post.user.updatedAt.toISOString(),
+                emailVerified: post.user.emailVerified?.toISOString() || null
+            }
+        }
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
