@@ -11,8 +11,8 @@ import SearchModal from './components/modal/SearchModal'
 // import OnlyClient from './components/OnlyClient'
 
 export const metadata = {
-  title: 'Airbnb',
-  description: 'Airbnb clone',
+  title: 'SN-Hustler',
+  description: 'Blog',
 }
 const font = Nunito({
   subsets: ["cyrillic-ext"],
