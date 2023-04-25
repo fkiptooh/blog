@@ -10,9 +10,10 @@ export type  SafePost = Omit<
 
 export type SafeUser = Omit<
     User,
-    "createAt" | "updatedAt" | "emailVerified" | "role"
+    "id" | "createdAt" | "updatedAt" | "emailVerified" | "role"
 > & {
-    createdAt : string;
+    id: string;
+    createdAt: string;
     updatedAt: string;
     emailVerified: string | null;
     role: string;
