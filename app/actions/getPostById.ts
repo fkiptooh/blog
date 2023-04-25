@@ -4,7 +4,7 @@ interface IParams {
     postId?: string
 }
 
-export default async function getPostsById(
+export default async function getPostById(
     params: IParams
 ){
     try {

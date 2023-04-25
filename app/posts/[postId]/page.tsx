@@ -1,4 +1,4 @@
-import getPostsById from "@/app/actions/getPostById";
+import getPostById from "@/app/actions/getPostById";
 import EmptyState from "@/app/components/EmptyState";
 import PostClient from "./PostClient";
 import getCurrentUser from "@/app/actions/getCurrentUser";
@@ -8,7 +8,7 @@ interface IParams {
 }
 const PostPage= async({params}: {params: IParams})=> {
 
-    const posts = await getPostsById(params)
+    const posts = await getPostById(params)
     const currentUser = await getCurrentUser()
 
     if (!posts) {

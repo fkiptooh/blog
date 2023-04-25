@@ -17,7 +17,7 @@ interface PostClientProps{
 
     post: SafePost & {
         user: SafeUser
-    };
+    }
     currentUser?: SafeUser | null;
 }
 

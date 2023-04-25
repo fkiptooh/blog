@@ -1,11 +1,11 @@
 import getCurrentUser from "./actions/getCurrentUser";
-import getPosts, { IPostParams } from "./actions/getPosts";
+import getPosts, { IPostsParams } from "./actions/getPosts";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import PostCard from "./components/posts/PostCard";
 
 interface HomeParams{
-  searchParams: IPostParams
+  searchParams: IPostsParams
 }
 
 const Home = async({searchParams}: HomeParams)=> {
