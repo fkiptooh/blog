@@ -14,8 +14,10 @@ const PostPage= async({params}: {params: IParams})=> {
     if (!posts) {
         return <EmptyState/>
     }
+
     return(
         <PostClient
+        // solve this error
             post={posts}
             currentUser={currentUser}
         />

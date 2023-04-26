@@ -1,3 +1,4 @@
+
 import prisma from "@/app/libs/prismadb";
 
 export interface IPostsParams {
@@ -17,7 +18,7 @@ export default async function getPosts(
       locationValue,
       startDate,
       endDate,
-      category,
+      category
     } = params;
 
     let query: any = {};

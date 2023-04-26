@@ -24,7 +24,7 @@ export default async function getPostById(
 
         return {
             ...post,
-            createAt: post.createdAt.toISOString(),
+            createdAt: post.createdAt.toISOString(),
             user: {
                 ...post.user,
                 createdAt: post.user.createdAt.toISOString(),
