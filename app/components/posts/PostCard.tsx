@@ -7,6 +7,7 @@ import React, { useCallback} from "react";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
+import { differenceInDays } from "date-fns";
 
 interface PostCardProps {
     data: SafePost,
@@ -25,6 +26,25 @@ const PostCard: React.FC<PostCardProps> = ({
     actionId='',
     currentUser,
 })=> {
+    const date = data.createdAt;
+    const dateObject = new Date(date);
+    const today = new Date(Date.now());
+    const diff = differenceInDays(today, dateObject);
+
+    let dateDifference: string;
+
+    if (diff < 1) {
+        dateDifference = 'Posted today';
+    } else if (diff === 1) {
+        dateDifference = 'Posted 24hrs ago';
+    } else if (diff > 1 && diff < 2) {
+        dateDifference = 'Posted yesterday';
+    } else {
+        dateDifference = `Posted ${diff} days ago`;
+    }
+
+    // console.log(dateDifference);
+
     const router = useRouter();
     const { getByValue } = useCountries();
     const location = getByValue(data.locationValue);
@@ -71,6 +91,9 @@ const PostCard: React.FC<PostCardProps> = ({
                 </div>
                 <div className="font-semibold text-lg">
                     {location?.region}, {location?.label}
+                </div>
+                <div className="font-light text-neutral-500">
+                    {dateDifference}
                 </div>
                 <div className="font-light text-neutral-500">
                     { data.title}

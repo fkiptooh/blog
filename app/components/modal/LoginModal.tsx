@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 import Button from "../Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
-const RegisterModal =()=>{
+const LoginModal =()=>{
     const router = useRouter()
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -135,4 +135,4 @@ const RegisterModal =()=>{
     )
 }
 
-export default RegisterModal;
+export default LoginModal;

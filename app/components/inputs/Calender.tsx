@@ -24,7 +24,7 @@ const Calender: React.FC<CalenderProps>=({
             onChange={onChange}
             direction="vertical"
             showDateDisplay={false}
-            minDate={new Date()}
+            maxDate={new Date()}
             disabledDates={disabledDates}
         />
     )

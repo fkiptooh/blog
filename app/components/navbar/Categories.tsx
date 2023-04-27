@@ -19,7 +19,7 @@ export const categories = [
         description: "This post happened in the urban region"
     },
     {
-        label: 'CountrySide',
+        label: 'Mashinani',
         icon: TbMountain,
         description: "This event occured in the countryside"
     },
@@ -29,7 +29,7 @@ export const categories = [
         description: "This post covers news outside Kenya"
     },
     {
-        label: 'Lakes',
+        label: 'Lakes Region',
         icon: GiBoatFishing,
         description: "This post is associated with the lake region"
     },
@@ -39,7 +39,7 @@ export const categories = [
         description: "This post covers arears around the forest"
     },
     {
-        label: 'Arid',
+        label: 'Arid and Semi-Arid Regions',
         icon: GiCactus,
         description: "This event occured in the arid region"
     },
