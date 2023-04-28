@@ -2,8 +2,8 @@ import prisma from "@/app/libs/prismadb";
 export interface IPostsParams {
   userId?: string | undefined;
   category?: string;
-  startDate?: string;
-  endDate?: string;
+  locationValue?: string,
+
 }
 
 const getPosts = async (params: IPostsParams) => {
@@ -17,6 +17,7 @@ const getPosts = async (params: IPostsParams) => {
       where: {
         userId: safeParams.userId,
         category: safeParams.category || undefined,
+        locationValue: safeParams.locationValue
       },
       orderBy: {
         createdAt: "desc",

@@ -31,7 +31,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         ${selected ? 'border-black' : 'border-neutral-200'}
       `}
     >
-      <Icon size={30} />
+      <Icon size={20} />
       <div className="font-semibold">
         {label}
       </div>

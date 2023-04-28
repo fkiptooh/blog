@@ -3,11 +3,16 @@ import Container from "../Container";
 import { TbBeach, TbMountain } from 'react-icons/tb'
 import { GiBoatFishing, GiCactus, GiForestCamp,} from 'react-icons/gi'
 import { MdOutlineVilla } from 'react-icons/md'
-import { FaGlobe } from 'react-icons/fa';
+import { FaGlobe, FaPeace, FaWater } from 'react-icons/fa';
 import CategoryBox from "../CategoryBox";
 import { usePathname, useSearchParams } from "next/navigation";
 
 export const categories = [
+    {
+        label: 'Trending',
+        icon: FaPeace,
+        description: "This are the trending events"
+    },
     {
         label: 'Coastal',
         icon: TbBeach,
@@ -29,7 +34,7 @@ export const categories = [
         description: "This post covers news outside Kenya"
     },
     {
-        label: 'Lakes Region',
+        label: 'Lakes',
         icon: GiBoatFishing,
         description: "This post is associated with the lake region"
     },
@@ -39,7 +44,17 @@ export const categories = [
         description: "This post covers arears around the forest"
     },
     {
-        label: 'Arid and Semi-Arid Regions',
+        label: 'Peace',
+        icon: FaPeace,
+        description: "This post covers posts on peace"
+    },
+    {
+        label: 'Water',
+        icon: FaWater,
+        description: "This post covers on water conservation"
+    },
+    {
+        label: 'Arid/Semi-Arid',
         icon: GiCactus,
         description: "This event occured in the arid region"
     },

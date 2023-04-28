@@ -47,7 +47,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
                             py-3
                             px-4
                             rounded-full
-                            hover: bg-neutral-100
+                            bg-neutral-100
+                            hover:bg-rose-500
+                            hover:text-white
                             transition
                             cursor-pointer
                         ">
@@ -98,11 +100,16 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 onClick={()=> router.push('/favourites')}
                                 label="My favorites"
                             />
-                            {isAdmin && (
+                            {isAdmin && (<>
                                 <MenuItem 
                                     onClick={rentModal.onOpen}
                                     label="Create a post"
                                 />
+                                <MenuItem 
+                                    onClick={()=> router.push('/myposts')}
+                                    label="My posts"
+                                />
+                                </>
                             )}
                             <hr/>
                             <MenuItem 
