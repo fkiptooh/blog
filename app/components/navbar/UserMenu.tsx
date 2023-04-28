@@ -100,6 +100,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 onClick={()=> router.push('/favourites')}
                                 label="My favorites"
                             />
+                            <MenuItem
+                                onClick={()=> router.push('/')}
+                                label="Home page"
+                            />
                             {isAdmin && (<>
                                 <MenuItem 
                                     onClick={rentModal.onOpen}
