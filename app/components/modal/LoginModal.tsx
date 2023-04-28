@@ -1,5 +1,5 @@
 'use client'
-import axios from "axios";
+
 import { signIn } from 'next-auth/react';
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from 'react-icons/fc'
@@ -106,7 +106,7 @@ const LoginModal =()=>{
                 ">
                     <div className="justify-center flex flex-row items-center gap-2">
                         <div>
-                            First time using Airbnb? 
+                            First time User? 
                         </div>
                         <div 
                             onClick={toggle}

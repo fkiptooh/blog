@@ -7,7 +7,7 @@ import React, { useCallback} from "react";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-import { differenceInDays, differenceInHours } from "date-fns";
+import { differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
 
 interface PostCardProps {
     data: SafePost,
@@ -32,10 +32,14 @@ const PostCard: React.FC<PostCardProps> = ({
     const diff = differenceInDays(today, dateObject);
     const time = differenceInHours(today, dateObject)
     const wakati = dateObject.toLocaleTimeString();
+    const minutes = differenceInMinutes(today, dateObject);
 
     let dateDifference: string;
 
-    if (diff< 1) {
+    if (diff < 1 && time < 1) {
+        dateDifference = `Posted ${minutes} minutes ago`
+    }
+    else if (diff< 1 && time > 1) {
         dateDifference = `Posted ${time}hrs ago`;
     } else if (diff === 1 && time > 24 ) {
         dateDifference = `Posted yesterday at ${dateObject}`;
