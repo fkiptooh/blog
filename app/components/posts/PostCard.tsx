@@ -39,7 +39,7 @@ const PostCard: React.FC<PostCardProps> = ({
     if (diff < 1 && time < 1) {
         dateDifference = `Posted ${minutes} minutes ago`
     }
-    else if (diff< 1 && time > 1) {
+    else if (diff< 1 && time > 1 && time < 24) {
         dateDifference = `Posted ${time}hrs ago`;
     } else if (diff === 1 && time > 24 ) {
         dateDifference = `Posted yesterday at ${dateObject}`;
