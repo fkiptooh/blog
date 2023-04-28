@@ -33,111 +33,96 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
         rentModal.onOpen()
     },[currentUser, loginModal, rentModal])
-    return ( 
+    return (
         <div className="relative">
-            <div className="flex flex-row items-center flex-nowrap gap-3">
-                {isAdmin && (
-                    <div 
-                        onClick={onRent}
-                        className="
-                            hidden
-                            md:block
-                            text-sm
-                            font-semibold
-                            py-3
-                            px-4
-                            rounded-full
-                            bg-neutral-100
-                            hover:bg-rose-500
-                            hover:text-white
-                            transition
-                            cursor-pointer
-                        ">
-                        Create a post
-                    </div>
-                )}
-                <div 
-                    onClick={toggleOpen}
-                    className="
-                        p-4
-                        md:py-1
-                        md:px-2
-                        border-[1px]
-                        border-neutral-200
-                        flex
-                        flex-row
-                        items-center
-                        gap-3
-                        rounded-full
-                        cursor:pointer
-                        hover:shadow-md
-                        transition
-                    ">
-                    <AiOutlineMenu/>
-                    <div className='hidden md:block'>
-                         <Avatar src={currentUser?.image}/>
-                    </div>
-                </div>
-            </div>
-            {isOpen && (
-                <div className='
-                    absolute
-                    rounded-xl
-                    shadow-md
-                    w-[40vw]
-                    lg:w-[40vh]
-                    md:w-2/4
-                    bg-white
-                    overflow-hidden
-                    right-0
-                    top-12
-                    text-sm
-                '>
-                    <div className='flex flex-col cursor-pointer'>
-                        { currentUser ? (
-                            <>
-                            <MenuItem 
-                                onClick={()=> router.push('/favourites')}
-                                label="My favorites"
-                            />
-                            <MenuItem
-                                onClick={()=> router.push('/')}
-                                label="Home page"
-                            />
-                            {isAdmin && (<>
-                                <MenuItem 
-                                    onClick={rentModal.onOpen}
-                                    label="Create a post"
-                                />
-                                <MenuItem 
-                                    onClick={()=> router.push('/myposts')}
-                                    label="My posts"
-                                />
-                                </>
-                            )}
-                            <hr/>
-                            <MenuItem 
-                                onClick={()=>signOut()}
-                                label="Logout"
-                            />
-                        </>
-                        ) : (
-                        <>
-                            <MenuItem 
-                                onClick={loginModal.onOpen}
-                                label="Login"
-                            />
-                            <MenuItem 
-                                onClick={registerModal.onOpen}
-                                label="Sign Up"
-                            />
-                        </>
-                        )}
-                    </div>
-                </div>
+          <div className="flex flex-row items-center flex-nowrap gap-3">
+            {isAdmin && (
+              <div
+                onClick={onRent}
+                className="
+                  hidden
+                  md:block
+                  text-sm
+                  font-semibold
+                  py-3
+                  px-4
+                  rounded-full
+                  bg-neutral-100
+                  hover:bg-rose-500
+                  hover:text-white
+                  transition
+                  cursor-pointer
+                "
+              >
+                Create a post
+              </div>
             )}
+            <div
+              onClick={toggleOpen}
+              className="
+                p-4
+                md:py-1
+                md:px-2
+                border-[1px]
+                border-neutral-200
+                flex
+                flex-row
+                items-center
+                gap-3
+                rounded-full
+                cursor:pointer
+                hover:shadow-md
+                transition
+              "
+            >
+              <AiOutlineMenu />
+              <div className="hidden md:block">
+                <Avatar src={currentUser?.image} />
+              </div>
+            </div>
+          </div>
+          {isOpen && (
+            <div
+              className="
+                absolute
+                rounded-xl
+                shadow-md
+                w-[40vw]
+                lg:w-[40vh]
+                md:w-2/4
+                bg-white
+                overflow-hidden
+                right-0
+                top-12
+                text-sm
+              "
+              onMouseLeave={() => setIsOpen(false)}
+            >
+              <div className="flex flex-col cursor-pointer">
+                {currentUser ? (
+                  <>
+                    <MenuItem onClick={() => router.push('/favourites')} label="My favorites" />
+                    <MenuItem onClick={() => router.push('/')} label="Home page" />
+                    {isAdmin && (
+                      <>
+                        <MenuItem onClick={rentModal.onOpen} label="Create a post" />
+                        <MenuItem onClick={() => router.push('/myposts')} label="My posts" />
+                      </>
+                    )}
+                    <hr />
+                    <MenuItem onClick={() => signOut()} label="Logout" />
+                  </>
+                ) : (
+                  <>
+                    <MenuItem onClick={loginModal.onOpen} label="Login" />
+                    <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-    )
+      );
     
 }
 
