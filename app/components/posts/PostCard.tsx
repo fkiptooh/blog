@@ -7,7 +7,7 @@ import React, { useCallback} from "react";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-import { differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
+import { differenceInHours, differenceInMinutes, getDate } from "date-fns";
 
 interface PostCardProps {
     data: SafePost,
@@ -29,27 +29,30 @@ const PostCard: React.FC<PostCardProps> = ({
     const date = data.createdAt;
     const dateObject = new Date(date);
     const today = new Date(Date.now());
-    const diff = differenceInDays(today, dateObject);
     const time = differenceInHours(today, dateObject)
     const wakati = dateObject.toLocaleTimeString();
     const minutes = differenceInMinutes(today, dateObject);
 
+    // get the date of date created
+    const dateCreated = getDate(dateObject);
+    // getting todays date
+    const todaysDate = getDate(today)
+
+    // date difference
+    let dateDiff  = todaysDate - dateCreated;
+
     let dateDifference: string;
+    // dateDifference = `Posted on ${dateObject.toDateString()}, At ${wakati} `
 
-    if (diff < 1 && time < 1) {
+    if (dateDiff ===0 && time < 1) {
         dateDifference = `Posted ${minutes} minutes ago`
+    } else if(dateDiff === 0 && time > 1){
+        dateDifference  = `Posted today at ${wakati}`
+    } else if(dateDiff === 1){
+        dateDifference = `Posted yesterday at ${wakati}`
+    }else {
+        dateDifference = `Posted on ${dateObject.toDateString()}, At ${wakati} `
     }
-    else if (diff< 1 && time > 1 && time < 24) {
-        dateDifference = `Posted ${time}hrs ago`;
-    } else if (diff === 1 && time > 24 ) {
-        dateDifference = `Posted yesterday at ${dateObject}`;
-    } else if (diff > 1 && diff < 2) {
-        dateDifference = 'Posted yesterday';
-    } else {
-        dateDifference = `Posted ${diff} days ago at ${wakati}`;
-    }
-
-    // console.log(dateDifference);
 
     const router = useRouter();
     const { getByValue } = useCountries();
@@ -98,10 +101,10 @@ const PostCard: React.FC<PostCardProps> = ({
                 <div className="font-semibold text-lg">
                     {location?.region}, {location?.label}
                 </div>
-                <div className="font-light text-neutral-500">
+                <div className="font-light text-rose-800">
                     {dateDifference}
                 </div>
-                <div className="font-light text-neutral-500">
+                <div className="font-semibold text-neutral-500">
                     { data.title}
                 </div>
                 <div className="flex flex-row items-center gap-1">
