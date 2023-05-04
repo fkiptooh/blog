@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import useRentModal from "@/app/hooks/usePostModal";
+import usePostModal from "@/app/hooks/usePostModal";
 import Modal from "./Modal";
 import { useMemo, useState } from "react";
 import Heading from "../Heading";
@@ -24,7 +24,7 @@ enum STEPS {
 
 const PostModal = ()=> {
     const router = useRouter()
-    const rentModal = useRentModal()
+    const postModal = usePostModal()
 
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ const PostModal = ()=> {
                 router.refresh();
                 reset();
                 setStep(STEPS.CATEGORY);
-                rentModal.onClose();
+                postModal.onClose();
             })
             .catch(()=> {
                 toast.error('Something went wrong');
@@ -204,8 +204,8 @@ const PostModal = ()=> {
 
     return (
         <Modal
-            isOpen={rentModal.isOpen}
-            onClose={rentModal.onClose}
+            isOpen={postModal.isOpen}
+            onClose={postModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}

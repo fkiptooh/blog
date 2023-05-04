@@ -8,6 +8,7 @@ export type CountrySelectValue = {
     latlng: number[];
     region: string;
     value: string
+    // subregion: string
 }
 
 interface CountrySelectProps{
